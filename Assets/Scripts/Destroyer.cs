@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
-    private const string Enemy = "Enemy";
+    private Fruit _fruit;
+    private Player _player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Enemy))
+        if (collision.GetComponent<Fruit>())
         {  
             Destroy(collision.gameObject);
         }

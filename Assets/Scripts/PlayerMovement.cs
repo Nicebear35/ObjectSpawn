@@ -14,12 +14,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private LayerMask _ground;
 
-    void Update()
+    private void Update()
     {
-        GroundChecker();
         float direcion = Input.GetAxis(Horizontal);
 
         transform.position += new Vector3(direcion, 0, 0) * _speed * Time.deltaTime;
+        _onGround = CheckGround();
 
         if (Input.GetKeyDown(KeyCode.Space) && _onGround)
         {
@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void GroundChecker()
+    private bool CheckGround()
     {
-        _onGround = Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _ground);
+        return Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _ground);
     }
 }
